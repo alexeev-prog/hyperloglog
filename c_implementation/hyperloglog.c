@@ -106,7 +106,7 @@ int main(void) {
     HyperLogLog hll;
     hll_init(&hll);
 
-    const int unique_count = 100000;
+    const int unique_count = 1000000;
     char** elements = malloc((size_t)unique_count * sizeof(char*));
     for (int i = 0; i < unique_count; i++) {
         elements[i] = gen_random_string(16);
