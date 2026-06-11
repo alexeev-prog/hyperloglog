@@ -58,3 +58,6 @@ dkms.conf
 .mypy_cache
 .ruff_cache
 .venv
+
+c_implementation/hyperloglog.o
+c_implementation/hyperloglog
