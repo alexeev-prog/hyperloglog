@@ -16,3 +16,4 @@ $(TARGET): $(OBJECTS)
 
 clean:
 	rm -f $(TARGET) $(OBJECTS)
+	rm results.csv

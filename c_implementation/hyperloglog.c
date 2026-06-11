@@ -15,14 +15,15 @@ typedef struct {
 
 static double hll_alpha(uint8_t p, uint32_t m) {
     switch (p) {
-        case 4:
-            return 0.673;
-        case 5:
-            return 0.697;
-        case 6:
-            return 0.709;
-        default:
-            return 0.7213 / (1.0 + 1.079 / (double)m);
+    case 4:  return 0.673;
+    case 5:  return 0.697;
+    case 6:  return 0.709;
+    case 7:  return 0.715;
+    case 8:  return 0.718;
+    case 9:  return 0.719;
+    case 10: return 0.720;
+    case 11: return 0.7205;
+    default: return 0.7213 / (1.0 + 1.079 / (double)m);
     }
 }
 
@@ -120,11 +121,7 @@ uint64_t hll_estimate(const HyperLogLog* hll) {
         return (uint64_t)raw;
     }
 
-    if (raw < (1ULL << 32) / 30.0) {
-        return (uint64_t)raw;
-    }
-
-    return (uint64_t)(-(double)(1ULL << 32) * log(1.0 - raw / (double)(1ULL << 32)));
+    return (uint64_t)raw;
 }
 
 void hll_merge(HyperLogLog* dest, const HyperLogLog* src) {
@@ -256,7 +253,6 @@ int main(int argc, char* argv[]) {
     fclose(output);
 
     printf("\nResults saved to: %s\n", output_file);
-    printf("To generate graphs, use the Python script.\n");
 
     hll_free_inv_pow2();
     return 0;
